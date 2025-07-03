@@ -1,13 +1,12 @@
 import os
 import logging
-import uuid # Import uuid to generate unique thread IDs
-from typing import List, Union, TypedDict
+import uuid
+from typing import List, Union, TypedDict, AsyncGenerator
 
 from dotenv import load_dotenv
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
+from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, AIMessageChunk
 from langchain_openai import ChatOpenAI
-# Use the pre-built MessagesState, which is the standard for this pattern
-from langgraph.graph import StateGraph, START, END, MessagesState
+from langgraph.graph import StateGraph, START, END
 from langgraph.checkpoint.memory import InMemorySaver
 from langchain_core.messages.utils import (
     trim_messages,
@@ -44,7 +43,7 @@ class Chatbot:
         Initializes the chatbot, sets up the language model, checkpointer, and compiles the graph.
         """
         logging.info(f"Initializing Chatbot with model: {model_name}")
-        self.llm = ChatOpenAI(model=model_name)
+        self.llm = ChatOpenAI(model=model_name, streaming=True) # IMPORTANT: Enable streaming on the model
         
         # 1. Initialize the checkpointer (memory) for the chatbot
         self.memory = InMemorySaver()
@@ -138,4 +137,26 @@ class Chatbot:
 
     # The manual save_conversation method is no longer needed, as the checkpointer handles memory.
     # You could write a new method to fetch history from the checkpointer if you wanted to save it to a file.
+    
+    # --- NEW STREAMING METHOD ---
+    async def stream_response(self, user_input: str, config: dict) -> AsyncGenerator[str, None]:
+        """
+        Gets a streaming response from the chatbot, yielding text chunks as they are generated.
+        """
+        current_state = self.agent.get_state(config)
+        current_messages = current_state.values.get("messages", [])
+        updated_messages = current_messages + [HumanMessage(content=user_input)]
+        
+        # Use astream_events for detailed, chunk-by-chunk processing
+        # We are interested in the events from our "process" node (which calls the LLM)
+        async for event in self.agent.astream_events(
+            {"messages": updated_messages}, config=config, version="v1",
+        ):
+            # The event name is 'on_chat_model_stream' when chunks are produced
+            if event["event"] == "on_chat_model_stream":
+                chunk = event["data"]["chunk"]
+                if isinstance(chunk, AIMessageChunk) and chunk.content:
+                    # Yield the content of the chunk immediately
+                    yield chunk.content
 
+#Note: I had to update the `stream_response` method to use `astream_events` and filter for the correct event type, as this is the modern and reliable way to get streaming chunks from a LangGraph agent.*

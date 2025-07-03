@@ -4,6 +4,8 @@ import logging
 import uuid
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+# Import StreamingResponse
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 # Import your perfected Chatbot class from the chatbot.py file
@@ -90,3 +92,29 @@ async def chat_with_bot(request: ChatRequest):
         # For now, we'll re-raise, and FastAPI will turn it into a 500 Internal Server Error
         raise
 
+# --- NEW STREAMING ENDPOINT ---
+@app.post("/stream_chat")
+async def stream_chat_with_bot(request: ChatRequest):
+    """
+    This endpoint handles streaming the chatbot's response.
+    It returns a StreamingResponse that yields text chunks.
+    """
+    try:
+        thread_id = request.thread_id or str(uuid.uuid4())
+        logging.info(f"Received stream request for thread_id: {thread_id}")
+        config = {"configurable": {"thread_id": thread_id}}
+
+        # Get the asynchronous generator from our chatbot class
+        chunk_generator = chatbot_instance.stream_response(request.message, config)
+
+        # Return a StreamingResponse
+        # The media_type 'text/event-stream' is common for Server-Sent Events (SSE)
+        # which is a great fit for this kind of streaming.
+        return StreamingResponse(chunk_generator, media_type="text/plain")
+
+    except Exception as e:
+        logging.error(f"Error in /stream_chat endpoint for thread_id {request.thread_id}: {e}", exc_info=True)
+        # You can't return a normal JSON error here as the headers are already sent.
+        # The connection will likely just close.
+        # Proper error handling in streams is more advanced.
+        print(f"An error occurred: {e}")

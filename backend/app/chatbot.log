@@ -53,3 +53,51 @@
 2025-07-04 00:30:12,153 - INFO - Received request for thread_id: a36bfe36-dc07-4f8f-a773-680fdc0ac0d9
 2025-07-04 00:30:12,157 - INFO - Invoking LLM to get a response.
 2025-07-04 00:30:15,078 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-04 02:36:15,775 - INFO - Initializing Chatbot with model: gpt-4o
+2025-07-04 02:36:18,604 - INFO - Building the agent graph definition.
+2025-07-04 02:36:18,612 - INFO - Chatbot instance created and ready.
+2025-07-04 02:37:02,860 - INFO - Initializing Chatbot with model: gpt-4o
+2025-07-04 02:37:04,755 - INFO - Building the agent graph definition.
+2025-07-04 02:37:04,760 - INFO - Chatbot instance created and ready.
+2025-07-04 02:38:13,058 - INFO - Initializing Chatbot with model: gpt-4o
+2025-07-04 02:38:15,170 - INFO - Building the agent graph definition.
+2025-07-04 02:38:15,177 - INFO - Chatbot instance created and ready.
+2025-07-04 02:38:33,653 - INFO - Initializing Chatbot with model: gpt-4o
+2025-07-04 02:38:35,563 - INFO - Building the agent graph definition.
+2025-07-04 02:38:35,571 - INFO - Chatbot instance created and ready.
+2025-07-04 02:38:43,684 - INFO - Initializing Chatbot with model: gpt-4o
+2025-07-04 02:38:45,286 - INFO - Building the agent graph definition.
+2025-07-04 02:38:45,295 - INFO - Chatbot instance created and ready.
+2025-07-04 02:39:00,608 - INFO - Received stream request for thread_id: 5234cb8f-11f4-44f5-b814-3c8fb5403aec
+2025-07-04 02:39:00,702 - INFO - Invoking LLM to get a response.
+2025-07-04 02:39:03,780 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-04 02:39:08,441 - INFO - Received stream request for thread_id: fe35701d-771a-4afc-a623-968fac21fe18
+2025-07-04 02:39:08,456 - INFO - Invoking LLM to get a response.
+2025-07-04 02:39:09,835 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-04 02:39:30,144 - INFO - Received stream request for thread_id: 820236ea-373c-4c78-8d2b-ac4cf6ecdf2e
+2025-07-04 02:39:30,156 - INFO - Invoking LLM to get a response.
+2025-07-04 02:39:31,749 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-04 02:39:35,769 - INFO - Received stream request for thread_id: 7be8e4f7-edf1-4be2-a90a-06be5fa98d6b
+2025-07-04 02:39:35,782 - INFO - Invoking LLM to get a response.
+2025-07-04 02:39:36,442 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-04 02:39:39,836 - INFO - Received stream request for thread_id: 59de4dbb-2abf-4415-8886-d7926eb8f56a
+2025-07-04 02:39:39,851 - INFO - Invoking LLM to get a response.
+2025-07-04 02:39:42,185 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-04 02:43:17,631 - INFO - Initializing Chatbot with model: gpt-4o
+2025-07-04 02:43:19,674 - INFO - Building the agent graph definition.
+2025-07-04 02:43:19,680 - INFO - Chatbot instance created and ready.
+2025-07-04 02:43:25,907 - INFO - Initializing Chatbot with model: gpt-4o
+2025-07-04 02:43:28,185 - INFO - Building the agent graph definition.
+2025-07-04 02:43:28,190 - INFO - Chatbot instance created and ready.
+2025-07-04 02:43:28,276 - INFO - Received stream request for thread_id: c1c84455-d492-4f5f-bc38-0900ba712731
+2025-07-04 02:43:28,375 - INFO - Invoking LLM to get a response.
+2025-07-04 02:43:31,656 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-04 02:43:35,619 - INFO - Received stream request for thread_id: c1c84455-d492-4f5f-bc38-0900ba712731
+2025-07-04 02:43:35,638 - INFO - Invoking LLM to get a response.
+2025-07-04 02:43:36,670 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-04 02:43:40,329 - INFO - Received stream request for thread_id: c1c84455-d492-4f5f-bc38-0900ba712731
+2025-07-04 02:43:40,347 - INFO - Invoking LLM to get a response.
+2025-07-04 02:43:42,388 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-04 02:43:49,704 - INFO - Received stream request for thread_id: c1c84455-d492-4f5f-bc38-0900ba712731
+2025-07-04 02:43:49,719 - INFO - Invoking LLM to get a response.
+2025-07-04 02:43:51,416 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
