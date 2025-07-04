@@ -2,27 +2,26 @@ const ChatMessage = ({ message }) => {
   const isUser = message.sender === "user";
   return (
     <div
-      className={`flex items-start gap-4 my-6 ${isUser ? "justify-end" : ""}`}
+      className={`flex items-start gap-3.5 my-6 ${
+        isUser ? "flex-row-reverse" : ""
+      }`}
     >
-      {!isUser && (
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold flex-shrink-0">
-          AI
-        </div>
-      )}
       <div
-        className={`max-w-lg p-4 rounded-2xl ${
-          isUser
-            ? "bg-blue-600 text-white rounded-br-none"
-            : "bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-none"
+        className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-white flex-shrink-0 ${
+          isUser ? "bg-zinc-700" : "bg-sky-600"
         }`}
       >
-        <p className="text-sm leading-relaxed">{message.text}</p>
+        {isUser ? "You" : "AI"}
       </div>
-      {isUser && (
-        <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-300 font-bold flex-shrink-0">
-          You
-        </div>
-      )}
+      <div
+        className={`max-w-2xl p-4 rounded-xl text-sm leading-relaxed whitespace-pre-wrap ${
+          isUser
+            ? "bg-sky-600 text-white"
+            : "bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200"
+        }`}
+      >
+        {message.text}
+      </div>
     </div>
   );
 };

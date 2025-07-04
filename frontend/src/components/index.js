@@ -1,6 +1,13 @@
 import ChatInput from "./ChatInput";
 import ChatMessage from "./ChatMessage";
 import Sidebar from "./Sidebar";
-import Theme from "./Theme";
+import ThemeSwitcher from "./ThemeSwitcher";
+import ClearConversationsButton from "./ClearConversationsButton";
 
-export { ChatInput, ChatMessage, Sidebar, Theme };
+export {
+  ChatInput,
+  ChatMessage,
+  Sidebar,
+  ThemeSwitcher,
+  ClearConversationsButton,
+};

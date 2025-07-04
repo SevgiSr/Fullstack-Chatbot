@@ -1,57 +1,66 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SendIcon } from "./Icons";
 
-const ChatInput = () => {
+const ChatInput = ({ onSend, isLoading }) => {
   const [input, setInput] = useState("");
   const textareaRef = useRef(null);
 
+  // This useEffect hook handles focusing the input box
+  useEffect(() => {
+    // We focus the input under two conditions:
+    // 1. When the component first loads.
+    // 2. Whenever the AI has finished responding (isLoading becomes false).
+    if (!isLoading) {
+      textareaRef.current?.focus();
+    }
+  }, [isLoading]); // The effect re-runs whenever 'isLoading' changes.
+
   const handleInput = (e) => {
     setInput(e.target.value);
-    // Auto-resize textarea
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   };
 
-  const handleSend = () => {
-    if (input.trim()) {
-      console.log("Sending:", input);
-      // Add send logic here
+  const handleSendClick = () => {
+    if (input.trim() && !isLoading) {
+      onSend(input);
       setInput("");
-      if (textareaRef.current) {
-        textareaRef.current.style.height = "auto";
-      }
+      if (textareaRef.current) textareaRef.current.style.height = "auto";
     }
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSend();
+      handleSendClick();
     }
   };
 
   return (
-    <div className="px-6 py-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
-      <div className="relative">
-        <textarea
-          ref={textareaRef}
-          value={input}
-          onChange={handleInput}
-          onKeyDown={handleKeyDown}
-          placeholder="Type your message here..."
-          rows="1"
-          className="w-full pl-4 pr-12 py-3 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none overflow-y-hidden"
-          style={{ maxHeight: "150px" }}
-        />
-        <button
-          onClick={handleSend}
-          className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed transition-colors"
-          disabled={!input.trim()}
-        >
-          <SendIcon className="w-5 h-5" />
-        </button>
+    <div className="px-4 pb-4 sm:px-6 sm:pb-6 bg-zinc-100 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800">
+      <div className="max-w-4xl mx-auto">
+        <div className="relative flex items-end p-2 bg-white dark:bg-zinc-800 rounded-lg shadow-sm">
+          <textarea
+            ref={textareaRef}
+            value={input}
+            onChange={handleInput}
+            onKeyDown={handleKeyDown}
+            placeholder="Message Chatbot..."
+            rows="1"
+            className="w-full pl-2 pr-12 py-2.5 bg-transparent text-zinc-800 dark:text-zinc-200 focus:outline-none resize-none overflow-y-hidden"
+            style={{ maxHeight: "150px" }}
+            disabled={isLoading}
+          />
+          <button
+            onClick={handleSendClick}
+            className="absolute right-3 bottom-3 p-2 rounded-full bg-sky-600 text-white hover:bg-sky-700 disabled:bg-sky-400/50 disabled:cursor-not-allowed transition-colors"
+            disabled={!input.trim() || isLoading}
+          >
+            <SendIcon className="w-5 h-5" />
+          </button>
+        </div>
       </div>
     </div>
   );

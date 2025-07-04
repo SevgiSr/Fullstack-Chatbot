@@ -67,7 +67,7 @@ class Chatbot:
             state["messages"],
             strategy="last",
             token_counter=count_tokens_approximately,
-            max_tokens=128,
+            max_tokens=4096,
             start_on="human",
             end_on=("human", "tool"),
         )
@@ -121,6 +121,8 @@ class Chatbot:
         # from the state to feed it to the llm
 
          # 1. Get the current state from the checkpointer.
+         # THIS IS WHERE THE CONVERSATION HISTORY SAVED IN THE SERVER'S RAM IS RETRIEVED
+         # use SqliteSaver to make it persistent even when server is restarted
         current_state = self.agent.get_state(config)
         
         # 2. Manually add the new user message to the history.

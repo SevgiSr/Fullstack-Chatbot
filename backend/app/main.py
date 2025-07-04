@@ -25,7 +25,8 @@ app = FastAPI(
 # your React frontend (running on http://localhost:3000) to communicate
 # with this backend (running on http://localhost:8000).
 origins = [
-    "http://localhost:3000",  # The default URL for Create React App
+     "http://localhost:3000",
+    "http://localhost:5173",  # The default URL for Create React App
     # Add your deployed frontend URL here later, e.g., "https://your-chatbot.com"
 ]
 
