@@ -1,3 +1,5 @@
+[![Watch the demo][(https://img.youtube.com/vi/YOUTUBE_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID)](https://youtu.be/aoBHC6z_ipI)
+
 # Full-Stack LangGraph Chatbot Architecture
 
 This document provides a comprehensive overview of the architecture for the full-stack AI chatbot application.
