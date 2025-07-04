@@ -1,4 +1,4 @@
-[![Watch the demo][(https://img.youtube.com/vi/YOUTUBE_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID)](https://youtu.be/aoBHC6z_ipI)
+[![Watch the [![Watch the demo](https://img.youtube.com/vi/aoBHC6z_ipI/0.jpg)](https://www.youtube.com/watch?v=aoBHC6z_ipI)
 
 # Full-Stack LangGraph Chatbot Architecture
 
